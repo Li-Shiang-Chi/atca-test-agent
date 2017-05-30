@@ -466,7 +466,14 @@ def postprocess_primaryOS_running(parser):
 	:param parser: is a dict, get from Test config file
 	"""
 	if parser["pos_check_primaryOS_status"] == "yes":
-		FTOS.L1_boot(parser["PrimaryOS_NetworkAdaptor"])
+		if parser["IPMI_supported"] == "yes":
+			ssh = shell_server.get_ssh(parser["SlaveOS_ip"]
+                              , parser["SlaveOS_usr"]
+                              , parser["SlaveOS_pwd"]) #獲得ssh 
+			FTOS.IPMI_boot(parser["PrimaryOS_ipmb"], ssh)
+			ssh.close()
+		elif parser["IPMI_supported"] == "no":
+			FTOS.L1_boot(parser["PrimaryOS_NetworkAdaptor"])
 	if FTOS.OS_is_running(parser["PrimaryOS_ip"], parser):
 		return True
 	raise TA_error.Postprocess_Error("primary OS can not boot")
@@ -479,7 +486,14 @@ def postprocess_backupOS_running(parser):
 	:param parser: is a dict, get from Test config file
 	"""
 	if parser["pos_check_backupOS_status"] == "yes":
-		FTOS.L1_boot(parser["BackupOS_NetworkAdaptor"])
+		if parser["IPMI_supported"] == "yes":
+			ssh = shell_server.get_ssh(parser["SlaveOS_ip"]
+                              , parser["SlaveOS_usr"]
+                              , parser["SlaveOS_pwd"]) #獲得ssh 
+			FTOS.IPMI_boot(parser["BackupOS_ipmb"], ssh)
+			ssh.close()
+		elif parser["IPMI_supported"] == "no":
+			FTOS.L1_boot(parser["BackupOS_NetworkAdaptor"])
 	if FTOS.OS_is_running(parser["BackupOS_ip"], parser):
 		return True
 	raise TA_error.Postprocess_Error("backup OS can not boot")	
@@ -492,7 +506,14 @@ def postprocess_slaveOS_running(parser):
 	:param parser: is a dict, get from Test config file
 	"""
 	if parser["pos_check_slaveOS_status"] == "yes":
-		FTOS.L1_boot(parser["SlaveOS_NetworkAdaptor"])
+		if parser["IPMI_supported"] == "yes":
+			ssh = shell_server.get_ssh(parser["PrimaryOS_ip"]
+                              , parser["PrimaryOS_usr"]
+                              , parser["PrimaryOS_pwd"]) #獲得ssh 
+			FTOS.IPMI_boot(parser["SlaveOS_ipmb"], ssh)
+			ssh.close()
+		elif parser["IPMI_supported"] == "no":
+			FTOS.L1_boot(parser["SlaveOS_NetworkAdaptor"])
 	if FTOS.OS_is_running(parser["SlaveOS_ip"], parser):
 		return True
 	raise TA_error.Postprocess_Error("slave OS can not boot")	
