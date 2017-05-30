@@ -95,6 +95,8 @@ def preprocess_host_OS(parser):
             ssh.close()
         elif parser["IPMI_supported"] == "no":
             FTOS.L1_boot(parser["PrimaryOS_NetworkAdaptor"])
+    if FTOS.OS_is_running(parser["PrimaryOS_ip"], parser) == False:
+        raise TA_error.Preprocess_Error("PrimaryOS node cannot boot")
     if FTOS.ssh_is_ready(parser["PrimaryOS_ip"], parser["PrimaryOS_usr"], parser["PrimaryOS_pwd"], parser) == False:
         raise TA_error.Preprocess_Error("Host node ssh can not access")
     
@@ -128,6 +130,8 @@ def preprocess_backup_OS(parser):
             ssh.close()
         elif parser["IPMI_supported"] == "no":
             FTOS.L1_boot(parser["BackupOS_NetworkAdaptor"])
+    if FTOS.OS_is_running(parser["BackupOS_ip"], parser) == False:
+        raise TA_error.Preprocess_Error("BackupOS node cannot boot")
     if FTOS.ssh_is_ready(parser["BackupOS_ip"], parser["BackupOS_usr"], parser["BackupOS_pwd"], parser) == False:
         raise TA_error.Preprocess_Error("Backup node ssh can not access")
     
@@ -160,6 +164,8 @@ def preprocess_slave_OS(parser):
             ssh.close()
         elif parser["IPMI_supported"] == "no":
             FTOS.L1_boot(parser["SlaveOS_NetworkAdaptor"])
+    if FTOS.OS_is_running(parser["SlaveOS_ip"], parser) == False:
+        raise TA_error.Preprocess_Error("SlaveOS node cannot boot")
     if FTOS.ssh_is_ready(parser["SlaveOS_ip"], parser["SlaveOS_usr"], parser["SlaveOS_pwd"], parser) == False:
         raise TA_error.Preprocess_Error("Slave node ssh can not access")
 def preprocess_slaveOS_Mount(parser):
