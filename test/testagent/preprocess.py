@@ -271,7 +271,12 @@ def preprocess_mm(parser):
         status, error = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE).communicate()
         #print status
         #print 100
-    
+    if parser["pre_init_mm"] == "no":
+        #print 99
+        cmd = "bash non_mm_initAll.sh"
+        status, error = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE).communicate()
+        #print status
+        #print 100
     
 
 def preprocess_hostOS(parser):
