@@ -377,7 +377,7 @@ def vm_running_in_backupOS(parser):
 	while time.time() < t_end: #超過t_end則跳出迴圈
 		#每sleep一秒就詢問一次狀態
 		time.sleep(1)
-		print 66
+		#print 66
 		if FTVM.is_running(parser["vm_name"], parser["BackupOS_ip"], ssh): #狀態為running就跳出迴圈
 			break
 	print 67

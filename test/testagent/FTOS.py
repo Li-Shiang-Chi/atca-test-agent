@@ -30,7 +30,7 @@ def __OS_is_ping(ip , parser):
 	t_start = time.time()
 	while ( (time.time() - t_start) < float(parser["pre_wait_node_boot_time"])) :
 		response = os.system("ping -c 1 %s >/dev/null" % ip)
-		print "ping %s" % ip
+		#print "ping %s" % ip
 		if response == 0:
 			return True;
 		time.sleep(float(1))
@@ -64,8 +64,8 @@ def __ssh_port_is_ready(ip , parser):
 	t_start = time.time()
 	while((time.time() - t_start) < float(parser["pre_wait_ssh_port_time"])):
 		response = os.system("nc -z %s 22 >/dev/null" % ip)
-		print "check %s ssh" % ip
-		print "response %s" % response
+		#print "check %s ssh" % ip
+		#print "response %s" % response
 		if response == 0:
 			return True
 		time.sleep(float(1))
@@ -87,7 +87,7 @@ def __ssh_daemon_is_running(ip,user,pwd,parser):
                                   , user
                                   , pwd) #獲得ssh 
 		except Exception:
-			print " checking %s ssh " % user
+			#print " checking %s ssh " % user
 			continue
 		ssh.close()
 		return True
