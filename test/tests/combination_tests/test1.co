@@ -1,15 +1,15 @@
 #HAagent sprint1 unit test
 !3
-HA3_create_cluster
-HA3_create_duplicate_cluster
-HA3_de_cluster
-HA3_de_outer_cluster
-HA3_add_node
-HA3_add_duplicate_node
-HA3_add_outer_node
-HA3_rm_node
-HA3_overview
-HA3_non_primary_de_cluster
+#HA3_create_cluster
+#HA3_create_duplicate_cluster
+#HA3_de_cluster
+#HA3_de_outer_cluster
+#HA3_add_node
+#HA3_add_duplicate_node
+#HA3_add_outer_node
+#HA3_rm_node
+#HA3_overview
+#HA3_non_primary_de_cluster
 HA3_primary_start_ftvm
 HA3_primary_start_duplicate_ftvm
 HA3_non_primary_start_ftvm
