@@ -281,7 +281,7 @@ def vm_is_login_in_hostOS(parser):
 				  , int(parser["ast_vm_login_wait_time"])): #若回傳VM登入完成，則test oracle通過，否則raise exception
 		return True
 	else:
-		ssh = shell_server.get_ssh(parser["GuestOS_ip_P"]
+		ssh = shell_server.get_ssh(parser["GuestOS_ip"]
                               , parser["GuestOS_usr"]
                               , parser["GuestOS_pwd"]) #獲得ssh
 		
@@ -314,7 +314,7 @@ def vm_is_login_in_backupOS(parser):
 				  , int(parser["ast_vm_login_wait_time"])): #若回傳VM登入完成，則test oracle通過，否則raise exception
 		return True
 	else:
-		ssh = shell_server.get_ssh(parser["GuestOS_ip_B"]
+		ssh = shell_server.get_ssh(parser["GuestOS_ip"]
                               , parser["GuestOS_usr"]
                               , parser["GuestOS_pwd"]) #獲得ssh
 		
@@ -344,7 +344,7 @@ def vm_is_login_in_slaveOS(parser):
 				  , int(parser["ast_vm_login_wait_time"])): #若回傳VM登入完成，則test oracle通過，否則raise exception
 		return True
 	else:
-		ssh = shell_server.get_ssh(parser["GuestOS_ip_S"]
+		ssh = shell_server.get_ssh(parser["GuestOS_ip"]
                               , parser["GuestOS_usr"]
                               , parser["GuestOS_pwd"]) #獲得ssh
 		

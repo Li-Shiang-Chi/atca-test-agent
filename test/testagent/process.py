@@ -12,6 +12,74 @@ import time
 import HAagent
 import TA_error
 import os
+from testagent import cmd_HAagent
+import cmd
+
+
+def exec_high_temp_danger(parser):
+	'''
+	execute high temperature danger to primary node
+	'''
+	ssh = shell_server.get_ssh(parser["PrimaryOS_ip"]
+                              , parser["PrimaryOS_usr"]
+                              , parser["PrimaryOS_pwd"]) #獲得ssh
+	
+	cmd = cmd_HAagent.high_temp_danger_cmd()
+	print cmd
+	s_stdin, s_stdout, s_stderr = ssh.exec_command(cmd) #透過ssh執行指令
+	ssh.close()
+	
+def exec_low_temp_danger(parser):
+	'''
+	execute low temperature danger to primary node-
+	'''
+	ssh = shell_server.get_ssh(parser["PrimaryOS_ip"]
+                              , parser["PrimaryOS_usr"]
+                              , parser["PrimaryOS_pwd"]) #獲得ssh
+	
+	cmd = cmd_HAagent.low_temp_danger_cmd()
+	print cmd
+	s_stdin, s_stdout, s_stderr = ssh.exec_command(cmd) #透過ssh執行指令
+	ssh.close()
+	
+def exec_high_volt_danger(parser):
+	'''
+	execute high voltage to primary node
+	'''
+	ssh = shell_server.get_ssh(parser["PrimaryOS_ip"]
+                              , parser["PrimaryOS_usr"]
+                              , parser["PrimaryOS_pwd"]) #獲得ssh
+	
+	cmd = cmd_HAagent.high_volt_danger_cmd()
+	print cmd
+	s_stdin, s_stdout, s_stderr = ssh.exec_command(cmd) #透過ssh執行指令
+	ssh.close()
+	
+def exec_low_volt_danger(parser):
+	'''
+	execute low voltage danger to primary node
+	'''
+	ssh = shell_server.get_ssh(parser["PrimaryOS_ip"]
+                              , parser["PrimaryOS_usr"]
+                              , parser["PrimaryOS_pwd"]) #獲得ssh
+	
+	cmd = cmd_HAagent.low_volt_danger_cmd()
+	print cmd
+	s_stdin, s_stdout, s_stderr = ssh.exec_command(cmd) #透過ssh執行指令
+	ssh.close()
+	
+def exec_nodeOS_hang(parser):
+	'''
+	execute node OS hang to targer node
+	'''
+	ssh = shell_server.get_ssh(parser["PrimaryOS_ip"]
+                              , parser["PrimaryOS_usr"]
+                              , parser["PrimaryOS_pwd"]) #獲得ssh
+	node = "node"
+	cmd = cmd_HAagent.nodeOS_hang_cmd(node)
+	print cmd
+	s_stdin, s_stdout, s_stderr = ssh.exec_command(cmd) #透過ssh執行指令
+	ssh.close()
 
 def exec_L1_backupOS_network_isolation(parser):
 
@@ -31,9 +99,6 @@ def exec_L1_backupOS_network_isolation(parser):
 	ssh = shell_server.get_ssh(parser["PrimaryOS_ip"]
                               , parser["PrimaryOS_usr"]
                               , parser["PrimaryOS_pwd"]) #獲得ssh
-	
-	ssh.exec_command("sudo chmod -R 777 /var/ha/images/")
-	
 	
 	#print "stdout",s_stdout.read()
 	#print "stderr",s_stderr.read()
@@ -59,7 +124,6 @@ def exec_primaryOS_network_isolation(parser):
                               , parser["BackupOS_usr"]
                               , parser["BackupOS_pwd"]) #獲得ssh
 	
-	ssh.exec_command("sudo chmod -R 777 /var/ha/images/")
 	#print "stdout",s_stdout.read()
 	#print "stderr",s_stderr.read()
 	ssh.close()

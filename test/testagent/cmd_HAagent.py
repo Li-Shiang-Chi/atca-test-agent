@@ -24,6 +24,17 @@ def start_ftvm_cmd (node_name , vm_name , xml_path=None):
 def remove_ftvm_cmd(vm_name):
     return "mmsh removeftvm %s" % (vm_name)
 
+def low_temp_danger_cmd():
+    pass
+def high_temp_danger_cmd():
+    pass
+def low_volt_danger_cmd():
+    pass
+def high_volt_danger_cmd():
+    pass
+def nodeOS_hang_cmd(node):
+    pass
+
 def overview_cmd():
     return "mmsh overview"
 
