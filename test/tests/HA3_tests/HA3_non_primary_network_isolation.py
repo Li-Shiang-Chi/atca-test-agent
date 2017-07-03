@@ -14,7 +14,8 @@ def run_HA3_non_primary_network_isolation(parser):
     process.exec_L1_backupOS_network_isolation(parser)
     print 402
     #assert
-    Assert.vm_recover_in_slaveOS(parser)
+    #Assert.vm_recover_in_slaveOS(parser)
+    Assert.vm_recover_in_backup_or_slave(parser)
     print 404
     #Assert.detect_backupOS_network_isolation_info(parser)
     print 405

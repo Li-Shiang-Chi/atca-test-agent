@@ -43,6 +43,7 @@ def is_running(vm_name, ip="", ssh=None):
 	else:
 		status = get_vm_status(vm_name, ip)
 
+	print status
 	if status == "running":
 		return True
 	return False
