@@ -137,8 +137,10 @@ def IPMI_get_power_status(ipmb):
 			power = line.split(":")[1];
 			print "power %s" % power
 			if power == "1":
+				print "ON"
 				return "ON"
 			elif power == "0":
+				print "OFF"
 				return "OFF"
 
 def get_OS_status(OS_name):
