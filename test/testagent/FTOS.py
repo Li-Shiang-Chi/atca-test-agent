@@ -30,7 +30,7 @@ def __OS_is_ping(ip , parser):
 	t_start = time.time()
 	while ( (time.time() - t_start) < float(parser["pre_wait_node_boot_time"])) :
 		response = os.system("ping -c 1 %s >/dev/null" % ip)
-		#print "ping %s" % ip
+		print "ping %s" % ip
 		if response == 0:
 			return True;
 		time.sleep(float(1))
