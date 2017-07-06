@@ -38,7 +38,7 @@ def __OS_is_ping(ip , parser):
 def IPMI_OS_is_running(ipmb ,parser):
 	t_start = time.time()
 	while ( (time.time() - t_start) < float(parser["pre_wait_node_boot_time"])) :
-		status = IPMI_get_power_status(ipmb)
+		status = IPMI_get_power_status(ipmb , parser)
 		print status
 		if status == "ON":
 			return True;
@@ -133,7 +133,7 @@ def reboot(ssh):
 	s_stdin, s_stdout, s_stderr = ssh.exec_command("sudo "+cmd)	
 	ssh.close()
 
-def IPMI_get_power_status(ipmb):
+def IPMI_get_power_status(ipmb , parser):
 	cmd = " ipmitool -t 0x%s picmg power get 0 0" % ipmb
 	
 	ssh = shell_server.get_ssh(parser["SlaveOS_ip"]
