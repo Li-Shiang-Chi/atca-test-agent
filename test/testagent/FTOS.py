@@ -136,7 +136,7 @@ def IPMI_get_power_status(ipmb):
 		if "Actual Power Level" in line:
 			power = line.split(":")[1];
 			print "power %s" % power
-			power = power.trim()
+			power = power.replace(" ","")
 			if power == "1":
 				print "ON"
 				return "ON"
