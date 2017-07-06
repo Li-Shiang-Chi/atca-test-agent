@@ -124,7 +124,23 @@ def reboot(ssh):
 	s_stdin, s_stdout, s_stderr = ssh.exec_command("sudo "+cmd)	
 	ssh.close()
 
+def IPMI_get_power_status(ipmb):
+	cmd = " ipmitool -t 0x%s picmg power get 0 0" % ipmb
 	
+	ssh = shell_server.get_ssh(parser["SlaveOS_ip"]
+							, parser["SlaveOS_usr"]
+							, parser["SlaveOS_pwd"]) #獲得ssh
+	
+	s_stdin, s_stdout, s_stderr = ssh.exec_command("sudo "+cmd)	
+	
+	for line in s_stdout:
+		if "Actual Power Level" in line:
+			power = line.split(":")[1];
+			print "power %s" % power
+			if power == "1":
+				return "ON"
+			elif power == "0":
+				return "OFF"
 
 def get_OS_status(OS_name):
 	"""
@@ -219,4 +235,8 @@ if __name__ == "__main__":
 	parser = {}
 	parser["pre_hostOS_boot_time"] = "200"
 	parser["PrimaryOS_ip"] = "192.168.1.100"
+	parser["SlaveOS_ip"] = "192.168.1.100"
+	parser["SlaveOS_usr"] = "slave"
+	parser["SlaveOS_pwd"] = "root"
+	IPMI_get_power_status(86):
 	#HostOSIsRunning(parser)
