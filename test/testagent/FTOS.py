@@ -8,7 +8,6 @@ import mmsh
 import os
 import TA_error
 import msg_socket
-import HAagent
 import cmd
 	
 def OS_is_running(ip,parser):
