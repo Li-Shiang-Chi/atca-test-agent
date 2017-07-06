@@ -36,13 +36,13 @@ def run_postprocess(parser):
 
 def postprocess_nodes(parser):
 	if parser["pos_check_primaryOS_status"] == "yes":
-		if not FTOS.OS_is_running(parser["PrimaryOS_ip"], parser):
+		if not FTOS.IPMI_OS_is_running(parser["PrimaryOS_ip"], parser):
 			postprocess_primaryOS_running(parser)
 	if parser["pos_check_backupOS_status"] == "yes":
-		if not FTOS.OS_is_running(parser["BackupOS_ip"], parser):
+		if not FTOS.IPMI_OS_is_running(parser["BackupOS_ip"], parser):
 			postprocess_backupOS_running(parser)
 	if parser["pos_check_slaveOS_status"] == "yes":
-		if not FTOS.OS_is_running(parser["SlaveOS_ip"], parser):
+		if not FTOS.IPMI_OS_is_running(parser["SlaveOS_ip"], parser):
 			postprocess_slaveOS_running(parser)
 def postprocess_Host(parser):
 	"""

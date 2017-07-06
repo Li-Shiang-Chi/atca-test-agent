@@ -35,6 +35,16 @@ def __OS_is_ping(ip , parser):
 		time.sleep(float(1))
 	return False
 
+def IPMI_OS_is_running(ipmb ,parser):
+	t_start = time.time()
+	while ( (time.time() - t_start) < float(parser["pre_wait_node_boot_time"])) :
+		status = IPMI_get_power_status(ipmb)
+		print status
+		if status == "ON":
+			return True;
+		time.sleep(float(1))
+	return False
+
 
 def ssh_is_ready(ip,user,pwd,parser):
 	"""
@@ -135,13 +145,10 @@ def IPMI_get_power_status(ipmb):
 	for line in s_stdout:
 		if "Actual Power Level" in line:
 			power = line.split(":")[1];
-			print "power %s" % power
 			power = power.strip()
 			if power == "1":
-				print "ON"
 				return "ON"
 			elif power == "0":
-				print "OFF"
 				return "OFF"
 
 def get_OS_status(OS_name):
