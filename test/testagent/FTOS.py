@@ -234,7 +234,7 @@ if __name__ == "__main__":
 	parser = {}
 	parser["pre_hostOS_boot_time"] = "200"
 	parser["PrimaryOS_ip"] = "192.168.1.100"
-	parser["SlaveOS_ip"] = "192.168.1.100"
+	parser["SlaveOS_ip"] = "192.168.1.28"
 	parser["SlaveOS_usr"] = "slave"
 	parser["SlaveOS_pwd"] = "root"
 	IPMI_get_power_status(86)
