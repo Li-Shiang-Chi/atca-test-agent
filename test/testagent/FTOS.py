@@ -37,13 +37,13 @@ def __OS_is_ping(ip , parser):
 
 def IPMI_OS_is_running(ipmb ,parser):
 	t_start = time.time()
-	while ( (time.time() - t_start) < float(parser["pre_wait_node_boot_time"])) :
+	while ( (time.time() - t_start) < float(300)) :
 		status = IPMI_get_power_status(ipmb , parser)
 		print status
-		if status == "ON":
-			return True;
+		if status == "OFF":
+			return False;
 		time.sleep(float(1))
-	return False
+	return True
 
 
 def ssh_is_ready(ip,user,pwd,parser):
